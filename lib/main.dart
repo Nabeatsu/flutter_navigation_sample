@@ -35,9 +35,13 @@ class FirstPage extends StatelessWidget {
       body: Center(
         child: RaisedButton(
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return SecondPage();
-            }));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) {
+                      return SecondPage('messageFromFirst');
+                    },
+                    fullscreenDialog: true));
           },
           child: Text('Next Page'),
         ),
@@ -47,6 +51,8 @@ class FirstPage extends StatelessWidget {
 }
 
 class SecondPage extends StatelessWidget {
+  final String messageFromFirst;
+  SecondPage(this.messageFromFirst);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -57,6 +63,7 @@ class SecondPage extends StatelessWidget {
       body: Center(
         child: RaisedButton(
           onPressed: () {
+            print(messageFromFirst);
             Navigator.pop(context);
           },
           child: Text('Go Back'),
